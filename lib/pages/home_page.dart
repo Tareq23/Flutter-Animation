@@ -28,7 +28,8 @@ class _HomePageState extends State<HomePage> {
               height: 100,
               alignment: Alignment.centerLeft,
               child: const Text('Animation',style: TextStyle(color: Colors.white,fontSize: 35,fontWeight: FontWeight.w600),),
-            )
+            ),
+            
           ],
         ),
       ),
