@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animation/components/trip_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,7 +30,9 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.centerLeft,
               child: const Text('Animation',style: TextStyle(color: Colors.white,fontSize: 35,fontWeight: FontWeight.w600),),
             ),
-            
+            Flexible(
+              child: TripList(),
+            )
           ],
         ),
       ),
