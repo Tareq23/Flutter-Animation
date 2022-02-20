@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animation/models/item_model.dart';
+import 'package:flutter_animation/pages/details_page.dart';
 
 class TripList extends StatefulWidget {
   const TripList({Key? key}) : super(key: key);
@@ -15,24 +16,24 @@ class _TripListState extends State<TripList> {
    final List<TripModel> _tripList = [
     TripModel(
         name: "Cox's Bazar",
-        price: "1200",
+        price: "12",
         night: "1",
         imgUrl: "images/beach.png"),
     TripModel(
-        name: "Cox's Bazar",
-        price: "1200",
-        night: "1",
-        imgUrl: "images/beach.png"),
+        name: "Dhaka",
+        price: "20",
+        night: "3",
+        imgUrl: "images/city.png"),
     TripModel(
-        name: "Cox's Bazar",
-        price: "1200",
+        name: "Sky Adventure",
+        price: "40",
         night: "1",
-        imgUrl: "images/beach.png"),
+        imgUrl: "images/ski.png"),
     TripModel(
-        name: "Cox's Bazar",
-        price: "1200",
+        name: "Space Adventure",
+        price: "120",
         night: "1",
-        imgUrl: "images/beach.png"),
+        imgUrl: "images/space.png"),
   ];
 
   @override
@@ -42,6 +43,9 @@ class _TripListState extends State<TripList> {
       itemCount: _tripList.length,
         itemBuilder: (context, index) {
       return ListTile(
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsPage(trip: _tripList[index],)));
+        },
         contentPadding: const EdgeInsets.all(25),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
