@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animation/components/screen_title.dart';
 import 'package:flutter_animation/components/trip_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,7 +29,8 @@ class _HomePageState extends State<HomePage> {
             Container(
               height: 100,
               alignment: Alignment.centerLeft,
-              child: const Text('Animation',style: TextStyle(color: Colors.white,fontSize: 35,fontWeight: FontWeight.w600),),
+              // child: const Text('Animation',style: TextStyle(color: Colors.white,fontSize: 35,fontWeight: FontWeight.w600),),
+              child: const ScreenTitle(title: "Animation Practice",),
             ),
             Flexible(
               child: TripList(),
