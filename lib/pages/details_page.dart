@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animation/constant/constant_text.dart';
 import 'package:flutter_animation/models/item_model.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -45,8 +46,8 @@ class DetailsPage extends StatelessWidget {
               ),
               Padding(
                   padding: EdgeInsets.all(18),
-                  child: Text('',
-                      // lipsum.createText(numParagraphs: 1, numSentences: 3),
+                  child: Text(
+                      ConstantText.loremParagraphOne,
                       style: TextStyle(
                           color: Colors.grey[600],
                           height: 1.4
