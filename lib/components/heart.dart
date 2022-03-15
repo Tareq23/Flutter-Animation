@@ -18,32 +18,39 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin{
   void initState(){
     super.initState();
     _animationController = AnimationController(
-      duration: Duration(microseconds: 3000),
+      duration: Duration(microseconds: 300),
       vsync: this,
     );
 
     _colorAnimation = ColorTween(begin: Colors.grey[400],end: Colors.red).animate(_animationController);
-    _animationController.forward();
+    // _animationController.forward();
 
     _animationController.addListener(() {
-      setState(() {
-        _favoriteColor = _colorAnimation.value;
-      });
-      print(_animationController.value);
-      print(_colorAnimation.value);
+      // setState(() {
+      //   _favoriteColor = _colorAnimation.value;
+      // });
+      // print(_animationController.value);
+      // print(_colorAnimation.value);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: (){},
-        icon: Icon(
-          Icons.favorite,
-          // color: Colors.grey,
-          // color: _colorAnimation.value,
-          color: _favoriteColor,
-        )
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (BuildContext context, _){
+        return IconButton(
+            onPressed: (){
+              _animationController.forward();
+            },
+            icon: Icon(
+              Icons.favorite,
+              // color: Colors.grey,
+              color: _colorAnimation.value,
+              // color: _favoriteColor,
+            )
+        );
+      },
     );
   }
 }
