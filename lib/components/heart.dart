@@ -14,11 +14,12 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin{
 
   late Animation _colorAnimation;
   Color _favoriteColor = Colors.grey;
+  bool _isFavorite = false;
   @override
   void initState(){
     super.initState();
     _animationController = AnimationController(
-      duration: Duration(microseconds: 300),
+      duration: Duration(microseconds: 1000),
       vsync: this,
     );
 
@@ -32,6 +33,20 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin{
       // print(_animationController.value);
       // print(_colorAnimation.value);
     });
+
+    _animationController.addStatusListener((status) {
+        print(status);
+        if(status == AnimationStatus.completed){
+          setState(() {
+            _isFavorite = true;
+          });
+        }
+        if(status == AnimationStatus.dismissed){
+          setState(() {
+            _isFavorite = false;
+          });
+        }
+    });
   }
 
   @override
@@ -41,7 +56,8 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin{
       builder: (BuildContext context, _){
         return IconButton(
             onPressed: (){
-              _animationController.forward();
+              // _animationController.forward();
+              _isFavorite ? _animationController.reverse() : _animationController.forward();
             },
             icon: Icon(
               Icons.favorite,
