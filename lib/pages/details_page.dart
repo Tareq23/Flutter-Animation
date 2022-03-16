@@ -55,7 +55,12 @@ class DetailsPage extends StatelessWidget {
                           // trailing: Heart()
                       ),
                     ),
-                    Heart(),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      padding: const EdgeInsets.all(0),
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: const Heart(),
+                    )
                   ],
                 ),
                 Padding(

@@ -13,29 +13,36 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin{
   late AnimationController _animationController;
 
   late Animation _colorAnimation;
-  Color _favoriteColor = Colors.grey;
+  late Animation<double> _sizeAnimation;
   bool _isFavorite = false;
   @override
   void initState(){
     super.initState();
+
+
     _animationController = AnimationController(
-      duration: Duration(microseconds: 1000),
+      duration: const Duration(seconds: 1),
       vsync: this,
     );
 
     _colorAnimation = ColorTween(begin: Colors.grey[400],end: Colors.red).animate(_animationController);
-    // _animationController.forward();
+
+    _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
+      TweenSequenceItem(
+          tween: Tween<double>(begin: 30,end: 40),
+          weight: 50
+      ),
+      TweenSequenceItem(
+          tween: Tween<double>(begin: 40,end: 30),
+          weight: 50
+      ),
+    ]).animate(_animationController);
 
     _animationController.addListener(() {
-      // setState(() {
-      //   _favoriteColor = _colorAnimation.value;
-      // });
-      // print(_animationController.value);
-      // print(_colorAnimation.value);
+        // print(_sizeAnimation.value);
     });
 
     _animationController.addStatusListener((status) {
-        print(status);
         if(status == AnimationStatus.completed){
           setState(() {
             _isFavorite = true;
@@ -50,21 +57,25 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin{
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _animationController,
       builder: (BuildContext context, _){
         return IconButton(
-            onPressed: (){
-              // _animationController.forward();
-              _isFavorite ? _animationController.reverse() : _animationController.forward();
-            },
             icon: Icon(
               Icons.favorite,
-              // color: Colors.grey,
               color: _colorAnimation.value,
-              // color: _favoriteColor,
-            )
+              size: _sizeAnimation.value,
+            ),
+            onPressed: (){
+              _isFavorite ? _animationController.reverse() : _animationController.forward();
+            },
         );
       },
     );
